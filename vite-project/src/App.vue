@@ -1,12 +1,5 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup></script>
 
-<template>
+<template></template>
 
-</template>
-
-<style scoped>
-
-</style>
+<style scoped></style>
