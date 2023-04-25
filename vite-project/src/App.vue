@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script setup></script>
 =======
 <script setup>
@@ -17,3 +18,10 @@
 <style scoped>
 </style>
 >>>>>>> origin/stevev2
+=======
+<script setup></script>
+
+<template></template>
+
+<style scoped></style>
+>>>>>>> ness
