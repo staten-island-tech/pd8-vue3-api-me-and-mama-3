@@ -1,16 +1,16 @@
 <template>
-  <div class="nav"></div>
+  <div class="nav">
+    <b-navbar> </b-navbar>
+  </div>
 </template>
 
-<script class="">
-export default {
-  name: "main-logo",
-  methods: {
-    greet: function () {
-      this.$emit("scrollMainboard");
-    },
-  },
-};
-</script>
+<script></script>
 
-<style></style>
+<style>
+.nav {
+  background-color: #111;
+  width: 20rem;
+  height: auto;
+  top: 0%;
+}
+</style>
