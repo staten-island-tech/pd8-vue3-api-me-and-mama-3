@@ -8,6 +8,8 @@
     :margin="margin"
     :direction="direction"
     :axis="axis">
+  </Chart>
+</template>
 
     <template #layers>
       <Grid strokeDasharray="2,2" />
@@ -29,38 +31,61 @@
         }"
       />
     </template>
-  </Chart>
-  <Chart direction="circular"
-        :size="{ width:400, height: 400 }"
+    <template>
+      <Chart
+        :size="{ width: 900, height: 420 }"
         :data="data"
-        :margin="{
-          left: Math.round((400 - 360)/2),
-          top: 20,
-          right: 0,
-          bottom: 20
-        }"
-        :axis="axis"
-        :config="{ controlHover: false }"
-        >
-    <template #layers>
-      <Pie :dataKeys="['race', 'infant_deaths']" :barStyle="{ fill: '#0096c7' }"       :pie-style="{ innerRadius: 100, padAngle: 0.05 }" /> 
-    </template>
-    <template #widgets>
+        :margin="margin"
+        :direction="direction"
+        :axis="axis">
+    
+        <template #layers>
+          <Grid strokeDasharray="2,2" />
+          <Bar :dataKeys="['race', 'infant_mortality_rate']" :barStyle="{ fill: '#90e0ef' }" />
+          <Bar :dataKeys="['race', 'postneonatal_mortality_rate']" :barStyle="{ fill: '#0096c7' }" />
+        </template>
+    
+        <template #widgets>
           <Tooltip
+            borderColor="#48CAE4"
             :config="{
-              name: { },
-              infant_deaths: { },
+              race: { color: '#90e0ef' },
+              infant_mortality_rate: { color: '#90e0ef'},
+              postneonatal_mortality_rate: { color: '#0096c7'},
               neonatal_infant_deaths: {hide: true},
-          neonatal_mortality_rate: {hide: true},
-          postneonatal_infant_deaths: {hide: true},
-          postneonatal_mortality_rate: {hide: true},
-          year: {hide: true},
+              neonatal_mortality_rate: {hide: true},
+              postneonatal_infant_deaths: {hide: true},
+              year: {hide: true},
             }"
-            hideLine
           />
-    </template>
-</Chart>
-</template>
+        </template>
+        <template>
+          <Chart :size="{ width: 900, height: 420 }"
+                 :data="data"
+                 :margin="margin"
+                 :direction="direction"
+                 :axis="axis">
+            <template #layers>
+              <Pie :dataKeys="['race', 'infant_deaths']"
+                   :barStyle="{ fill: '#0096c7' }"
+                   :pie-style="{ innerRadius: 100, padAngle: 0.05 }" />
+            </template>
+            <template #widgets>
+              <Tooltip :config="{
+                          name: { },
+                          infant_deaths: { },
+                          neonatal_infant_deaths: {hide: true},
+                          neonatal_mortality_rate: {hide: true},
+                          postneonatal_infant_deaths: {hide: true},
+                          postneonatal_mortality_rate: {hide: true},
+                          year: {hide: true},
+                        }"
+                       hideLine />
+            </template>
+          </Chart>
+        </template>
+        
+    
 
 <script>
 import { defineComponent, ref } from 'vue'
