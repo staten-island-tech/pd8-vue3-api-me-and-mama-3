@@ -80,7 +80,6 @@ export default defineComponent({
       right: 20,
       bottom: 0
     })
-
     const axis = ref({
       primary: {
         type: 'band'
