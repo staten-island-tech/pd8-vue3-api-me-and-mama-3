@@ -2,6 +2,9 @@
 
 
 <template>
+  <button>
+    YEAR GO BACK
+  </button>
   <Chart
     :size="{ width: 900, height: 420 }"
     :data="data"
@@ -59,20 +62,25 @@
             hideLine
           />
     </template>
-</Chart>
+  </Chart>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
 import { Chart, Grid, Line, Bar, Marker,Tooltip,Pie, Responsive } from 'vue3-charts'
-import { data } from './getAPI.vue';
-let data2019 = data.filter(s=> s.year == "2019").map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
+import { dataBIG } from './getAPI.vue';
+let data2019 = dataBIG.filter(s=> s.year == "2019").map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
 console.log(data2019)
 export default defineComponent({
-  name: 'BarChart',
+  name: 'Boobies',
   components: { Pie, Chart, Grid, Line,Bar,Marker,Tooltip },
+  methods: {
+    changeYear: async function(year){
+      data = dataBIG (s=> s.year == year).map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
+    }
+  },
   setup() {
-    const data = data2019
+    let data = data2019
     const direction = ref('horizontal')
     const margin = ref({
       left: 0,
@@ -80,7 +88,6 @@ export default defineComponent({
       right: 20,
       bottom: 0
     })
-
     const axis = ref({
       primary: {
         type: 'band'
