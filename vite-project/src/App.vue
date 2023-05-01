@@ -1,8 +1,8 @@
 
 
 
-<template>
-  <button>
+<template     :key="componentKey">
+  <button @click="changeDATAbyYEAR(`2017`)">
     YEAR GO BACK
   </button>
   <Chart
@@ -10,6 +10,7 @@
     :data="data"
     :margin="margin"
     :direction="direction"
+    :key="componentKey"
     :axis="axis">
 
     <template #layers>
@@ -44,6 +45,7 @@
         }"
         :axis="axis"
         :config="{ controlHover: false }"
+        :key="componentKey"
         >
     <template #layers>
       <Pie :dataKeys="['race', 'infant_deaths']" :barStyle="{ fill: '#0096c7' }"       :pie-style="{ innerRadius: 100, padAngle: 0.05 }" /> 
@@ -66,21 +68,24 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, getCurrentInstance } from 'vue'
 import { Chart, Grid, Line, Bar, Marker,Tooltip,Pie, Responsive } from 'vue3-charts'
 import { dataBIG } from './getAPI.vue';
+
 let data2019 = dataBIG.filter(s=> s.year == "2019").map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
 console.log(data2019)
 export default defineComponent({
   name: 'Boobies',
   components: { Pie, Chart, Grid, Line,Bar,Marker,Tooltip },
-  methods: {
-    changeYear: async function(year){
-      data = dataBIG (s=> s.year == year).map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
-    }
-  },
   setup() {
     let data = data2019
+    let componentKey = ref(0)
+    let changeDATAbyYEAR = function(year){
+      data = dataBIG.filter(s=> s.year == String(year)).map(s=> {s.race = String(s.materal_race_or_ethnicity);delete s.materal_race_or_ethnicity; return s})
+      console.log(data)
+      componentKey.value += 1;
+      console.log(componentKey)
+    }
     const direction = ref('horizontal')
     const margin = ref({
       left: 0,
@@ -99,7 +104,7 @@ export default defineComponent({
       }
     })
 
-    return { data, direction, margin, axis }
+    return { data, direction, margin, axis,changeDATAbyYEAR,componentKey}
   }
   
 })
