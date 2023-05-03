@@ -1,5 +1,5 @@
 <script setup>
-    import { defineComponent, ref, getCurrentInstance } from "vue";
+    import { defineComponent, ref, getCurrentInstance, defineProps } from "vue";
 import {
   Chart,
   Grid,
@@ -11,7 +11,8 @@ import {
   Responsive,
 } from "vue3-charts";
 import { dataBIG } from "./getAPI.vue";
-    let data = dataBIG.filter(s=> s.year=="2019").map(s=> {s.race = String(s.materal_race_or_ethnicity); delete s.materal_race_or_ethnicity; return s})
+let prop = defineProps(['year'])
+let data = dataBIG.filter(s=> s.year== (prop.year||"2019")).map(s=> {s.race = String(s.materal_race_or_ethnicity); delete s.materal_race_or_ethnicity; return s})
 </script>
 <template>
 <Chart
@@ -59,7 +60,6 @@ import { dataBIG } from "./getAPI.vue";
       neonatal_infant_deaths: { hide: true },
       neonatal_mortality_rate: { hide: true },
       postneonatal_infant_deaths: { hide: true },
-      year: { hide: true },
     }"
   />
 </template>

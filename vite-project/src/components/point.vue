@@ -1,5 +1,9 @@
+<script setup >
+let prop = defineProps(['text'])
+
+</script>
 <template>
   <button>
-    CLICK ME
+      {{prop.text}}
     </button>
 </template>
