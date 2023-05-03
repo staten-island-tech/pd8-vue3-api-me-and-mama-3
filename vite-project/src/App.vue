@@ -23,7 +23,7 @@ let changeyear = function(x){
   <h2  v-if="renderComponent">{{ year }}</h2>
   <barGraph :year="year" v-if="renderComponent"></barGraph>
   <pieChart :year="year" v-if="renderComponent"></pieChart>
-
+  <h3 v-if="year=='2018'">No data for this year</h3>
 </template>
 
 
