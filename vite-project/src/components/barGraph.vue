@@ -3,12 +3,8 @@
 import {
   Chart,
   Grid,
-  Line,
   Bar,
-  Marker,
   Tooltip,
-  Pie,
-  Responsive,
 } from "vue3-charts";
 import { dataBIG } from "./getAPI.vue";
 let prop = defineProps(['year'])

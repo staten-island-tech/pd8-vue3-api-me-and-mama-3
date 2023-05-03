@@ -12,7 +12,6 @@ const forceRerender = async () => {
 }
 let changeyear = function(x){
   year+=x
-  console.log(year)
   forceRerender()
   
 }
