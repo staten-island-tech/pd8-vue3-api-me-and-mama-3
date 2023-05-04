@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "vue": "^3.2.47",
+    "vue-scrollto": "^2.20.0",
     "vue3-charts": "^1.1.33"
   },
   "devDependencies": {
